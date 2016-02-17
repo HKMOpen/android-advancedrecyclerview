@@ -22,31 +22,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.h6ah4i.android.example.advrecyclerview.R;
 import com.h6ah4i.android.example.advrecyclerview.common.data.AbstractDataProvider;
+import com.h6ah4i.android.example.advrecyclerview.common.utils.DrawableUtils;
 import com.h6ah4i.android.example.advrecyclerview.common.utils.ViewUtils;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
+import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemConstants;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
-import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemViewHolder;
 
-public class MyDraggableItemAdapter
+class MyDraggableItemAdapter
         extends RecyclerView.Adapter<MyDraggableItemAdapter.MyViewHolder>
         implements DraggableItemAdapter<MyDraggableItemAdapter.MyViewHolder> {
     private static final String TAG = "MyDraggableItemAdapter";
 
+    // NOTE: Make accessible with short name
+    private interface Draggable extends DraggableItemConstants {
+    }
+
     private AbstractDataProvider mProvider;
 
     public static class MyViewHolder extends AbstractDraggableItemViewHolder {
-        public ViewGroup mContainer;
+        public FrameLayout mContainer;
         public View mDragHandle;
         public TextView mTextView;
 
         public MyViewHolder(View v) {
             super(v);
-            mContainer = (ViewGroup) v.findViewById(R.id.container);
+            mContainer = (FrameLayout) v.findViewById(R.id.container);
             mDragHandle = v.findViewById(R.id.drag_handle);
             mTextView = (TextView) v.findViewById(android.R.id.text1);
         }
@@ -73,7 +79,7 @@ public class MyDraggableItemAdapter
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View v = inflater.inflate((viewType == 0) ? R.layout.list_item : R.layout.list_item2, parent, false);
+        final View v = inflater.inflate((viewType == 0) ? R.layout.list_item_draggable : R.layout.list_item2_draggable, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -87,12 +93,15 @@ public class MyDraggableItemAdapter
         // set background resource (target view ID: container)
         final int dragState = holder.getDragStateFlags();
 
-        if (((dragState & RecyclerViewDragDropManager.STATE_FLAG_IS_UPDATED) != 0)) {
+        if (((dragState & Draggable.STATE_FLAG_IS_UPDATED) != 0)) {
             int bgResId;
 
-            if ((dragState & RecyclerViewDragDropManager.STATE_FLAG_IS_ACTIVE) != 0) {
+            if ((dragState & Draggable.STATE_FLAG_IS_ACTIVE) != 0) {
                 bgResId = R.drawable.bg_item_dragging_active_state;
-            } else if ((dragState & RecyclerViewDragDropManager.STATE_FLAG_DRAGGING) != 0) {
+
+                // need to clear drawable state here to get correct appearance of the dragging item.
+                DrawableUtils.clearState(holder.mContainer.getForeground());
+            } else if ((dragState & Draggable.STATE_FLAG_DRAGGING) != 0) {
                 bgResId = R.drawable.bg_item_dragging_state;
             } else {
                 bgResId = R.drawable.bg_item_normal_state;

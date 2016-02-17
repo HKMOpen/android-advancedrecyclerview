@@ -15,7 +15,6 @@
        limitations under the License.
 -->
 <resources>
-    <color name="ripple_item_normal_state">#80666666</color>
-    <color name="ripple_group_item_normal_state">#80006600</color>
-    <color name="ripple_group_item_expanded_state">#80006600</color>
+    <!-- NOTE: requires non transparent color to cast item shadows -->
+    <color name="bg_swipe_item_neutral">@android:color/transparent</color>
 </resources>
