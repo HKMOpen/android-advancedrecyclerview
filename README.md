@@ -33,7 +33,7 @@ Target platforms
 Latest version
 ---
 
-- Version 0.8.6  (Feb. 8, 2016)   ([RELEASE NOTES](./RELEASE-NOTES.md))
+- Version 0.8.7  (Mar. 27, 2016)   ([RELEASE NOTES](./RELEASE-NOTES.md))
 
 *If you are using support library v23.0.x, please use v0.8.1 instead.*
 
@@ -45,7 +45,7 @@ This library is published on jCenter. Just add these lines to `build.gradle`.
 
 ```groovy
 dependencies {
-    compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.8.6@aar'){
+    compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.8.7@aar'){
         transitive=true
     }
 }
@@ -92,9 +92,37 @@ Usage
 
 Please check the implementation of the simple examples.
 
-- [Drag & Drop example](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d/)
-- [Swipe example](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s/)
-- [Expandable item example](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_e/)
+### Drag & Drop related examples
+
+- [Basic](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d_basic/)
+- [Minimal](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d_minimal/)
+- [Draggable grid](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d_grid/)
+- [Draggable with section](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d_with_section/)
+- [Drag on Long press](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_d_on_longpress/)
+
+### Expandable item related examples
+
+- [Basic](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_e_basic/)
+- [Minimal](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_e_minimal/)
+- [Add & Remove item](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_e_add_remove/)
+- [Already expanded groups](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_e_already_expanded/)
+
+### Swipeable related examples
+
+- [Basic](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_basic/)
+- [Minimal](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_minimal/)
+- [Swipeable with button](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_button/)
+- [Legacy](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_legacy/)
+- [Vertical](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_vertical/)
+- [Viewpager](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_viewpager/)
+- [Swipe on long press](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_s_longpress/)
+
+### Hybrid examples
+
+- [Draggable & Swiping](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_ds/)
+- [Draggable & Swiping with section](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_ed_with_section/)
+- [Expandable & Draggable & Swiping](example/src/main/java/com/h6ah4i/android/example/advrecyclerview/demo_eds/)
+
 
 
 Primary classes/interfaces
@@ -151,6 +179,16 @@ Primary classes/interfaces
 | [`AbstractExpandableItemViewHolder`](library/src/main/java/com/h6ah4i/android/widget/advrecyclerview/utils/AbstractExpandableItemViewHolder.java)            | ViewHolder class which implements boilerplate code of the  `ExpandableItemViewHolder` interface      |
 | [`AbstractDraggableSwipeableItemViewHolder`](library/src/main/java/com/h6ah4i/android/widget/advrecyclerview/utils/AbstractDraggableSwipeableItemViewHolder.java) | ViewHolder class which implements boilerplate code of the `DraggableItemViewHolder` and the `SwipeableItemViewHolder` interfaces      |
 | [`AbstractExpandableItemAdapter<GVH, CVH>`](library/src/main/java/com/h6ah4i/android/widget/advrecyclerview/utils/AbstractExpandableItemAdapter.java)  | Adapter class which implements boilerplate code of the `ExpandableItemAdapter` interface |
+
+Other examples
+---
+
+| 
+### iOS Mail app like swipe action
+
+<img src="images/other_example_ios_mail.png" width="200" />
+
+- [Repository](https://github.com/h6ah4i/RecyclerViewiOSMailAppLikeSwipe)
 
 
 License
